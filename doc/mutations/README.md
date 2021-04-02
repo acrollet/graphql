@@ -1,8 +1,8 @@
 # Mutations
 
-In version 4 of Drupal GraphQL `Mutations` work a lot more similar to queries than they do in 3.x. Mutations are called using also Data producers which we already looked at.
+In version 4 of Drupal GraphQL `Mutations` work a lot more like queries than they do in 3.x. Mutations are called using also Data producers which we already looked at.
 
-Let's make a mutation that creates a new article. In this case it takes a data parameter that can have a `title` and a `description` in order to set these fields when creating the new article if they have been provided.
+Let's make a mutation that creates a new article. In this case it takes a data parameter that can have a `title` and a `description` in order to set values for these fields when creating the new article if they have been provided.
 
 Similar to queries we can start by adding the necessary schema information, not only to register our new mutation but also provide type safety on all parameters as well. This mutation will return the newly created "Article".
 
@@ -139,9 +139,9 @@ class CreateArticle extends DataProducerPluginBase implements ContainerFactoryPl
 
 ### Important note 
 
-One thing to notice when creating mutations like this is that Access checking needs to be done in the mutation, for queries this usually is done in the
-data producer directly (e.g. `entity_load` has access checking built-in) but because we are programatically creating
-things we need to check the user actually has access to do the operation.
+When creating mutations like this, access checking needs to be done in the mutation. This is usually done in the
+data producer directly for queries (e.g. `entity_load` has access checking built-in) but because we are programatically creating
+things we need to check the user performing the query actually has access to do the operation.
 
 ## Calling the mutation
 
@@ -193,4 +193,4 @@ and should return something like :
 
 ## Validating mutations
 
-Now that we have our mutation in place one way we can improve this is by adding some validation so that if someone is not to create an article they get a nice error back (technically in Drupal these are called Violations) so that it can be printed to the user in whichever app this is called. In the next chapter we will look at how we can improve this code to add some validation to it.
+Now that we have our mutation in place one way we can improve this is by adding some validation so that if someone is not allowed to create an article they get a nice error back (technically in Drupal these are called Violations) so that it can be displayed to the user in whichever app this is called. In the next chapter we will look at how we can improve this code to add some validation to it.
